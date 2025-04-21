@@ -7,5 +7,5 @@ def main():
     except ZeroDivisionError as e:
         logging.error(f"Error occurred: {e}")
         raise e
-if __name__ == "_main_":
+if __name__ == "__main__":
     main()

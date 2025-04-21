@@ -1,5 +1,5 @@
 import logging
-logging.basicConfig(filename='app.log', level=logging.INFO)
+logging.basicConfig(filename='logs/app.log', level=logging.INFO)
 def main():
     logging.info("Script started.")
     try:

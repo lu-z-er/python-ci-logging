@@ -1,0 +1,29 @@
+name: Send Failure Email
+
+on:
+  workflow_run:
+    workflows: ["Python CI with Logging"]
+    types:
+      - completed
+
+jobs:
+  notify-on-failure:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.office365.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "🚨 Python CI Failed"
+          to: ${{ secrets.EMAIL_SEND }}
+          from: GitHub Actions <${{ secrets.EMAIL_USERNAME }}>
+          body: |
+            The Python CI workflow failed.
+
+            View details and logs here:
+            ${{ github.event.workflow_run.html_url }}

@@ -24,6 +24,7 @@ jobs:
           from: GitHub Actions <${{ secrets.EMAIL_USERNAME }}>
           body: |
             The Python CI workflow failed.
-            from Alerts Action
+            from Alerts Action.
+            from-- lu-z-er
             View details and logs here:
             ${{ github.event.workflow_run.html_url }}
